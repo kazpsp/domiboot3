@@ -167,4 +167,29 @@ myApp.factory('contacts', function ($rootScope, phonegapReady) {
     }
 });
 
-
+myApp.factory('domiFactory', function($http) {  
+  var domiFactory = {	  
+    getGroups: function() {    	
+	  var url = 'http://www.domired.com/groups.json?callback=JSON_CALLBACK&';	  
+      var promise = $http.jsonp(url).then(function (response) {
+        return response.data;
+      });
+      return promise;
+    },
+    getGroup: function(groupId) {    	
+	  var url = 'http://www.domired.com/groups/'+groupId+'.json?callback=JSON_CALLBACK&';	  
+      var promise = $http.jsonp(url).then(function (response) {
+        return response.data;
+      });
+      return promise;
+    },
+    getStore: function(groupId, storeId) {    	
+	  var url = 'http://www.domired.com/groups/'+groupId+'/stores/'+storeId+'.json?callback=JSON_CALLBACK&';	  
+      var promise = $http.jsonp(url).then(function (response) {
+        return response.data;
+      });
+      return promise;
+    }       
+    };
+  return domiFactory;
+});

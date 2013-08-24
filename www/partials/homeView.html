@@ -1,13 +1,3 @@
-<div class="pad" ng-controller="GeolocationCtrl">
-    <div class="scroll">
-        <h4>(Scroll me)</h4>
-        <p>Latitude:                {{position.coords.latitude}}</p>
-        <p>Longitude:               {{position.coords.longitude}}</p>
-        <p>Altitude:                {{position.coords.altitude}}</p>
-        <p>Accuracy:                {{position.coords.accuracy}}</p>
-        <p>AltitudeAccuracy:        {{position.coords.altitudeAccuracy}}</p>
-        <p>Heading:                 {{position.coords.heading}}</p>
-        <p>Speed:                   {{position.coords.speed}}</p>
-        <p>Timestamp:               {{position.timestamp}}</p>
-    </div>
+<div class="col-xs-12 text-left" ng-repeat="data in dataset">
+	<a class="btn btn-large btn-block btn-danger" href="#/group/{{data.id}}" ng-click="slidePage('/group/{{data.id}}')">{{data.group}}</a>
 </div>

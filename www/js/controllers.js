@@ -1,9 +1,27 @@
 'use strict';
 
 /* Controllers */
-function HomeCtrl($scope ,$rootScope) {
-    $rootScope.showSettings = false;
+function rootCtrl($scope ,$rootScope) {
+   
 
+}
+
+function HomeCtrl(domiFactory,$scope,$rootScope) {
+	domiFactory.getGroups().then(function(d) {
+		$scope.dataset = d;	
+	});	
+}
+
+function groupCtrl(domiFactory, $scope,$rootScope, $routeParams) {
+	domiFactory.getGroup($routeParams.groupId).then(function(d) {
+		$scope.dataset = d;	
+	});	
+}
+
+function storeCtrl(domiFactory, $scope,$rootScope, $routeParams) {
+	domiFactory.getStore($routeParams.groupId, $routeParams.storeId).then(function(d) {
+		$scope.dataset = d.products;	
+	});	
 }
 
 function NotificationCtrl($scope) {
@@ -25,12 +43,6 @@ function NotificationCtrl($scope) {
 }
 
 function GeolocationCtrl($scope,$rootScope) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-    	navigator.notification.alert(position.coords.latitude,null,"My Alert","Close");
-        $scope.position=position;
-        $scope.$apply();
-        },function(e) {navigator.notification.alert('fuck you',null,"My Alert","Close"); }
-    );
 
 
 }
